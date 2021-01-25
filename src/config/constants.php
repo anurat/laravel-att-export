@@ -1,7 +1,7 @@
 <?php
 
 const MSACCESS_DRIVER = 'Microsoft Access Driver (*.mdb, *.accdb)';
-const MSACCESS_DATABASE = 'D:\\shareDB\\ATT2007.MDB';
+const MSACCESS_DATABASE = '';
 const MSACCESS_PASSWORD = '';
 // const MSACCESS_TABLE_NAMES = ['departments', 'holidays', 'leaveclass', 'userinfo', 'checkinout', 'user_speday'];
 const MSACCESS_TABLE_NAMES = ['departments'];
@@ -46,10 +46,10 @@ const MSACCESS_FIELDS = [
     ],
 ];
 
-const MYSQL_HOSTNAME = 'att2.rs.cri.or.th';
-const MYSQL_USERNAME = 'dba';
-const MYSQL_PASSWORD = '25ed8c4ad7';
-const MYSQL_DATABASE = 'att';
+const MYSQL_HOSTNAME = '';
+const MYSQL_USERNAME = '';
+const MYSQL_PASSWORD = '';
+const MYSQL_DATABASE = '';
 const MYSQL_TABLE_NAMES = MSACCESS_TABLE_NAMES;
 const MYSQL_FIELDS = [
     'checkinout' => [
