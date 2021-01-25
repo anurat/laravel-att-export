@@ -1,0 +1,9 @@
+watch:
+  directories:
+    - src
+    - tests
+  fileMask: '*.php'
+phpunit:
+  binaryPath: vendor/bin/phpunit
+  arguments: '--stop-on-failure --no-coverage'
+  timeout: 180

@@ -1,0 +1,36 @@
+{
+    "name": "anurat/laravel-att-export",
+    "description": "A package for exporting attendance database",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anurat Chapanond",
+            "email": "anurat@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "6.0",
+        "phpunit/phpunit": "8.5"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Anurat\\AttExport\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Anurat\\AttExport\\Tests\\": "tests"
+        }
+    },
+    
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anurat\\AttExport\\AttExportServiceProvider"
+            ]
+        }
+    }
+}
