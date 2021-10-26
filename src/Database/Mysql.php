@@ -2,11 +2,14 @@
 
 namespace Anurat\AttExport\Database;
 
+use Log;
+use PDOStatement;
+
 class Mysql extends Database implements DatabaseInterface
 {
     public function connect()
     {
-        $dsn = "mysql:host={$this->hostname};dbname={$this->databaseName};charset=utf8";
+        $dsn = "mysql:host={$this->hostname};dbname={$this->databaseName};charset=utf8mb4";
         $this->connection = new \PDO($dsn, $this->username, $this->password);
         $this->connection->query("SET character_set_connection=utf8mb4");
         $this->connection->query("SET character_set_client=utf8mb4");
@@ -15,7 +18,7 @@ class Mysql extends Database implements DatabaseInterface
 
     public function close()
     {
-        return $this->connection = null;
+        $this->connection = null;
     }
 
     public function query(string $sql)
@@ -28,8 +31,13 @@ class Mysql extends Database implements DatabaseInterface
         return $this->connection->exec($sql);
     }
 
+    public function prepare(string $sql): PDOStatement
+    {
+        return $this->connection->prepare($sql);
+    }
+
     public function errorInfo(): void
     {
-        print_r($this->connection->errorInfo());
+        Log::debug($this->connection->errorInfo());
     }
 }

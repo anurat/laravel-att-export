@@ -12,6 +12,5 @@ class CreateFacadeTest extends TestCase
     {
         $options = [];
         $this->assertInstanceOf(Export::class, AttExport::config($options));
-        $this->assertNull(AttExport::convert());
     }
 }

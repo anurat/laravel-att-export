@@ -2,6 +2,8 @@
 
 namespace Anurat\AttExport\Database;
 
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
+
 class SQLBuilder
 {
     public function __construct($fromDB, $toDB)

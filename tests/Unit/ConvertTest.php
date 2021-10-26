@@ -9,6 +9,6 @@ class ConvertTest extends TestCase
 {
     public function testConvert()
     {
-        // AttExport::convert();
+        AttExport::convert();
     }
 }

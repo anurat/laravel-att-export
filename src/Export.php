@@ -4,6 +4,7 @@ namespace Anurat\AttExport;
 
 use Anurat\AttExport\Database\SQLBuilder;
 use Anurat\AttExport\Database\Util;
+use Log;
 
 class Export
 {
@@ -26,7 +27,7 @@ class Export
 
         $tableNames = $this->fromDB->tableNames();
         foreach ($tableNames as $tableName) {
-            echo "\n" . $tableName;
+            Log::debug($tableName);
             $this->processTables($tableName);
         }
     }
@@ -51,15 +52,10 @@ class Export
             } elseif (!$this->hasSameValues($tableName, $accessResult->fields, $mysqlRow)) {
                 // if found a matched row but different values, update the row
                 $sql = $builder->buildUpdateSql($tableName, $accessResult->fields);
-
-                echo $sql;
-
                 if (!$this->mysql->exec($sql)) {
                     $this->mysql->errorInfo();
                 }
             }
-
-            echo '.';
 
             $accessResult->moveNext();
         }
@@ -72,7 +68,7 @@ class Export
         foreach ($from_fields as $i => $field) {
             $value = Util::convert($field['type'], $fromRow[$field['name']]);
             if ($toRow[$i] != $value) {
-                echo $toRow[$i] . ' ' . $value . "\n";
+                Log::debug($toRow[$i] . ' ' . $value);
 
                 return false;
             }

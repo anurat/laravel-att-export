@@ -2,28 +2,29 @@
 
 namespace Anurat\AttExport\Database;
 
+use variant;
+
 class Util
 {
-    public static function convert(string $type, $value)
+    public static function convert(string $type, variant $variant)
     {
-        $value = get_class($value) === 'variant' ? $value->value : $value;
-
         switch ($type) {
             case 'int':
+                $value = $variant;
                 break;
             case 'string':
+                $value = get_class($variant) === 'variant' ? $variant->value : $variant;
                 break;
             case 'date':
-                $date = DateTime::createFromFormat('d/m/Y', $value);
-                $value = $date->format('Y-m-d');
+                $timestamp = variant_date_to_timestamp($variant);
+                $value = $timestamp ? date('Y-m-d', $timestamp) : null;
                 break;
             case 'datetime':
-                $datetime = DateTime::createFromFormat('m/d/Y h:i:s a', $value);
-                $value = $datetime ? $datetime->format('Y-m-d H:i:s') : null;
+                $timestamp = variant_date_to_timestamp($variant);
+                $value = $timestamp ? date('Y-m-d H:i:s', $timestamp) : null;
                 break;
         }
 
         return $value;
     }
-
 }
