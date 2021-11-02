@@ -10,7 +10,7 @@ class Util
     {
         switch ($type) {
             case 'int':
-                $value = $variant;
+                $value = (int)$variant;
                 break;
             case 'string':
                 $value = get_class($variant) === 'variant' ? $variant->value : $variant;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Anurat\AttExport\Tests\Unit;
+namespace Anurat\AttExport\Tests\Unit\Database;
 
 use Anurat\AttExport\Database\Mysql;
 use Anurat\AttExport\Tests\TestCase;

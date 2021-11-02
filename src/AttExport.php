@@ -5,6 +5,7 @@ namespace Anurat\AttExport;
 use Anurat\AttExport\Database\MSAccess;
 use Anurat\AttExport\Database\Mysql;
 use Anurat\AttExport\Export;
+use Arr;
 
 class AttExport
 {
@@ -23,6 +24,14 @@ class AttExport
 
         $this->config = array_replace_recursive($this->config, $options);
 
+        if (Arr::has($options, 'connections.msaccess.tableNames')) {
+            $this->config['connections']['msaccess']['tableNames'] = $options['connections']['msaccess']['tableNames'];
+        }
+
+        if (Arr::has($options, 'connections.mysql.tableNames')) {
+            $this->config['connections']['mysql']['tableNames'] = $options['connections']['mysql']['tableNames'];
+        }
+
         return $this;
     }
 
@@ -30,13 +39,12 @@ class AttExport
     {
         try {
             $access = new MSAccess($this->config['connections']['msaccess']);
-            $mysql = new Mysql($this->config['connections']['mysql']);
-            $export = new Export(compact('access', 'mysql'));
+            $mysqlRead = new Mysql($this->config['connections']['mysql']);
+            $mysqlWrite = new Mysql($this->config['connections']['mysql']);
+            $export = new Export(compact('access', 'mysqlRead', 'mysqlWrite'));
             $export->fromAccessToMysql();
         } catch (Exception $e) {
             print_r($e);
         }
-
-        return;
     }
 }

@@ -3,8 +3,7 @@
 const MSACCESS_DRIVER = 'Microsoft Access Driver (*.mdb, *.accdb)';
 const MSACCESS_DATABASE = 'D:\\shareDB\\ATT2007.MDB';
 const MSACCESS_PASSWORD = '';
-// const MSACCESS_TABLE_NAMES = ['userinfo', 'departments', 'holidays', 'leaveclass', 'checkinout', 'user_speday'];
-const MSACCESS_TABLE_NAMES = [];
+const MSACCESS_TABLE_NAMES = ['userinfo', 'departments', 'holidays', 'leaveclass', 'checkinout', 'user_speday'];
 
 const MSACCESS_FIELDS = [
     'checkinout' => [
